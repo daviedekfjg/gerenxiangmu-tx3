@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+   *{
+    padding:0;
+	margin:0;
+	box-sizing:border-box;
+   }
+   .i1{
+    width:1300px;
+	height:70px;
+	padding:0;
+	margin-left:70px;
+   }
+   .i2{
+    width:1300px;
+	height:315px;
+	padding:0;
+	margin-left:70px;
+   }
+   .d1{
+     width:1300px;
+	 height:768px;
+	 margin-left:70px;
+     background-image:url("../img/denglu.jpg");
+	 background-size:1300px 768px;
+	 position:relative;
+   }
+   .d2{
+     width:300px;
+	 height:300px;
+	 background:rgba(181,209,160,0.4);
+	 position:absolute;
+	 left:200px;
+	 top:200px;
+	 position:relative;
+   }
+    input{
+	 display:block;
+	 width:170px;
+	 height:30px;
+	 margin-left:60px;
+	 position:absolute;
+	}
+	#uname{
+	 top:18px;
+	}
+	#upwd{
+	 top:70px;
+	}
+
+	input:hover{
+	 border:1px solid pink;
+	}
+	span{
+	   display:block;
+	   position:absolute;
+	   font-size:17px; 
+	   font-weight:800;
+	}
+	.s1{
+	 top:20px;
+	 left:2px;
+	}
+	.s2{
+	 top:70px;
+	 left:2px;
+	}
+	a{
+	  position:absolute;
+	  color:red;
+	  font-size:12px;
+	  text-decoration:none;
+	}
+	.a1{
+	 top:230px;
+	 left:140px;
+	}
+    .a2{
+	 top:230px;
+	 left:200px;
+	}
+	.btn1{
+	 background:green;
+     border:1px solid green;
+	 background-image:linear-gradient(to right,#1fea4b,#0fbc36);
+	 border-radius:4px;
+	 top:130px;
+	}
+	.btn2{
+	 background:blue;
+	 top:180px;
+	 border-radius:4px;
+	 border:1px solid blue;
+	}
+ </style>
+ </head>
+ <body>
+   <iframe src="header.html" frameborder="0" class="i1"></iframe> 
+      <div class="d1">
+	   <div class="d2">   
+		  <span class="s1">用户名:</span><input type="text" placeholder="请输入4-16位数字或者字母" id="uname">
+		  
+		  
+		   <span class="s2">密码:</span><input type="password" placeholder="请输入用户密码" id="upwd">
+		  
+		  
+			 <input type="button" value="登录" onclick="plogin()" class="btn1">
+			 <input type="button" value="返回" class="btn2">
+		     <a href="register.html" target="_blank" class="a1">注册账号</a>
+			 <a href="#" class="a2">忘记密码？</a>
+	   </div>
+      </div>
+    <iframe src="footer.html" frameborder="0" class="i2"></iframe>
+
+         <script src="common.js"></script>
+		 <script>
+		   function plogin(){
+			 
+			 var xhr=createXhr();
+               xhr.onreadystatechange=function(){
+			    if(xhr.readyState==4&&xhr.status==200){
+				  var res=xhr.responseText;
+				    alert("登录成功");
+                    location.href='http://127.0.0.1:3000/index.html'
+				}
+
+			   }
+			   xhr.open("post","/user/login",true);
+			   xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+			    var uname=$("uname").value;
+				var upwd=$("upwd").value;
+				var d="uname="+uname+"&upwd="+upwd;
+			   xhr.send(d);
+			} 
+		 </script>
+ </body>
+</html>

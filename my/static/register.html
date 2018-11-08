@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+	 #main{
+	width:1210px;
+	margin:0 auto;
+	box-sizing:border-box;
+	padding: 5px 0;
+    position: relative;
+    height: 600px;
+   } 
+   #d1{
+	  margin: 0 auto;
+	  padding: 20px;
+	  box-sizing: border-box;
+	  height: 530px;
+	  width: 800px;
+	  border: 1px solid #000000;
+	  border-radius: 10px;
+	  background:rgba(200,200,200,0.3);
+    }
+	h2{
+	  text-align: center;
+      font-size: 30px;
+      color: #000;
+	}
+	.sel{
+	 text-align: center;
+     height: 30px;
+	}
+	#d1>div.sel>input{
+	  box-sizing: border-box;
+	  padding-left: 20px;
+	  height: 30px;
+	  line-height: 30px;
+	  font-size: 25px;
+	}
+	#d1>div.sel>span{
+	  text-align: left;
+	  display: inline-block;
+	  box-sizing: border-box;
+	  width: 240px;
+	  height: 20px;
+	  line-height: 20px;
+	  padding-left: 10px;
+	  color: #555;
+	}
+	.btn{
+	  text-align: center;
+      position: relative;
+	}
+     #d1>div.btn>button{
+	  margin: 50px 0;
+	  padding: 0;
+	  border: 0;
+	  width: 200px;
+	  height: 40px;
+	  border-radius: 10px;
+	  background: #04cc00;
+	  color: #FFFFFF;
+	  font-weight: bold;
+	  font-size: 20px;
+    }
+	#bg{
+	  position: absolute;
+	  top: 0px;
+	  left: 0px;
+	  width: 1210px;
+	  height: 600px;
+	  opacity: 0.8;
+	  overflow: hidden;
+	  z-index: -1;
+    }
+
+	#d2{
+	 background:black;
+	 width:1210px;
+	 height:100px;
+	 margin:0 auto;
+     position: relative;
+	}
+	
+	#d3{
+	  position:absolute;
+	  bottom:25px;
+	  left:150px;
+	}
+	#d4{
+	  position:absolute;
+	  bottom:35px;
+	  right:250px;
+	}
+	a{
+	 text-decoration:none;
+	 color:#fff;
+	 font-size:12px;
+	}
+	p{
+	 width:500px;
+	 height:30px;
+	}
+	#main>#d1>p>input{
+	 position:absolute;
+	 left:500px;
+	 display:block;
+	 width:250px;
+	 height:30px;
+	 border-radius: 10px;
+	 border:2px solid black;
+	 margin-top:5px;
+	}
+	#main>#d1>p>span{
+	 display:block;
+	 position:absolute;
+	 left:780px;
+	 height:30px;
+	 margin-top:5px;
+	}
+	#main>#d1>p>span.s1{
+	 display:block;
+	 position:absolute;
+	 left:400px;
+	 margin-top:10px;
+	}
+  </style>
+ </head>
+ <body>
+       <div id="main">
+        <div id="d1">
+		   <h2>用户注册</h2>
+	          <p>
+			   <span class="s1">用户账号：</span>
+				 <input type="text"  id="uname" onblur="checkUname()" placeholder="请输入用户名">
+				<span id="showUname"></span>
+		      </p>
+		       <p>
+			    <span class="s1">用户密码：</span>
+				 <input type="password" id="upwd" placeholder="请输入用户密码" onfocus="pwd_focus()" onblur="pwd_blur()">
+				<span id="showUpwd"></span>
+		      </p>
+			   <p>
+			   <span class="s1">确认密码：</span>
+				 <input type="password" id="cpwd" placeholder="请再次输入密码" onfocus="cpwd_focus()" onblur="cpwd_blur()">
+				<span id="showCpwd"></span>
+              </p>
+		      <p>
+			   <span class="s1">手机号码：</span>
+				  <input type="text" id="phone" placeholder="请输入11位的手机号" onfocus=" phone_focus()" onblur="phone_blur()">
+				<span id="showphone"></span>
+		      </p>
+		     <p>
+			  <span class="s1">电子邮箱：</span>
+				 <input type="email" id="email" placeholder="请输入符合条件的邮箱" onfocus= "email_focus()" onblur="email_blur()">
+				<span id="showemail"></span>
+		       </p>
+		  <div class="sel">
+			<input type="checkbox"><span>同意用户协议和版权声明</span>
+		  </div>
+		  <div class="btn">
+				<button type="button" onclick="register()">注册</button>
+				<a href="index.html" target="_blank" style="color:#000;font-size:20px;">返回首页</a>
+		   </div>
+	   </div>
+	   <div id="bg">
+			<div class="bgmain">
+					<video autoplay loop muted src="../img/mlj.mp4" 
+					width="1210"></video>
+			</div>
+		</div>
+	</div> 
+	  <div id="d2">
+        <div id="d3">
+		   <img src="../img/wyhl.png" alt="">
+		   <img src="../img/logo.png" alt="">
+		</div>
+		<div id="d4">
+		   <a href="#">公司简介- </a>
+		   <a href="#">客户相关- </a>
+		   <a href="#">相关法律- </a>
+		   <a href="#">网易游戏- </a>
+		   <a href="#">联系我们- </a>
+		   <a href="#">加入我们 </a>
+		</div>
+      </div> 
+	   <script src="common.js"></script>
+	 <script>
+	  var isRegister=false;//全局变量，控制注册按钮
+
+	  //异步请求：检查用户名称是否存在
+	  function checkUname(){
+	    //1.创建xhr
+		var xhr=createXhr();
+		//2.监听
+		console.log(1111);
+        xhr.onreadystatechange=function(){
+		  if(xhr.readyState==4&&xhr.status==200){
+		    var res=xhr.responseText;
+			if(res=="1")
+			  {
+			    $("showUname").innerHTML="用户名已存在";
+				isRegister=false;
+			  }else{
+			    $("showUname").innerHTML="用户名可用";
+				isRegister=true;
+			  }
+		   }
+		 }
+			//3.打开连接
+			var uname=$("uname").value;
+			xhr.open("get","/user/checkUname?uname="+uname,true);
+			//4.发送请求
+			xhr.send(null);	
+	      }
+
+	   function register(){
+	    if(isRegister==true){
+		  //异步注册
+		  //1.创建异步xhr
+           var xhr=createXhr();
+		  //2.监听事件
+		  xhr.onreadystatechange=function(){
+		   if(xhr.readyState==4&&xhr.status==200){
+		     var res=xhr.responseText;
+			 alert("成功");
+             location.href='http://127.0.0.1:3000/index.html'
+		   }
+		  }
+		  //3.打开连接
+		  xhr.open("post","/user/register",true);
+		  //4.发送请求
+		  xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+          var uname=$("uname").value;
+		  var upwd=$("upwd").value;
+		  var phone=$("phone").value;
+		  var email=$("email").value;
+		  var url="uname="+uname+"&upwd="+upwd+"&phone="+phone+"&email="+email;
+		  xhr.send(url);
+		}else{
+		  alert("请检查注册信息");
+		}
+	  }
+
+	     function pwd_focus(){
+		 	  $("showUpwd").innerHTML="请输入密码6-12位";
+			}
+			function pwd_blur(){
+			if(!$("upwd").value){
+		       	 $("showUpwd").innerHTML="密码不能为空";
+			}else{
+			    $("showUpwd").innerHTML="ok";
+			 }
+		    }
+			 function cpwd_focus(){
+			  $("showCpwd").innerHTML="请在次输入密码";
+			}
+			function cpwd_blur(){
+			 if($("upwd").value==$("cpwd").value){
+			   $("showCpwd").innerHTML="通过";
+			 }else{
+			   $("showCpwd").innerHTML="请重新输入密码";
+			 }
+			}
+			function phone_focus(){
+			   $("showphone").innerHTML="请输入11位手机号码";
+			 }
+			function phone_blur(){
+			   if(/^1[34578]\d{9}$/.test($("phone").value)){
+			    $("showphone").innerHTML="通过";
+			   }else{
+			    $("showphone").innerHTML="请输入正确手机号码";
+			   }
+			 }
+			function email_focus(){
+			  $("showemail").innerHTML="请输入电子邮箱";
+			}
+			function email_blur(){
+			if(!$("email").value){
+		       	 $("showemail").innerHTML="邮箱不能为空";
+			}else{
+			    $("showemail").innerHTML="ok";
+			 }
+			}
+
+	   </script>
+ </body>
+</html>
